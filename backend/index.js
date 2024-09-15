@@ -4,6 +4,9 @@ import { ConnectDataBase } from "./db/ConnectDatabase.js";
 import cookieParser from "cookie-parser";
 import { config } from 'dotenv'
 import authRouter from "./routes/auth.routes.js";
+import userRouter from './routes/user.routes.js';
+import jobRouter from './routes/job.routes.js'
+import applicationRouter from './routes/application.routes.js'
 
 config({
   path: "./config/config.env"
@@ -29,12 +32,16 @@ app.use(cookieParser());
 /** api */
 
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
+app.use('/api/job', jobRouter);
+app.use('/api/application', applicationRouter)
 
 
 
-ConnectDataBase().then(() => app.listen(process.env.PORT, () => {
-  console.log(`Server is running ${process.env.PORT}...`)
-}));
+// ConnectDataBase().then(() => app.listen(process.env.PORT, () => {
+//   console.log(`Server is running ${process.env.PORT}...`)
+// }));
+
 
 
 
